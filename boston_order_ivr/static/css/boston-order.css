@@ -1,0 +1,53 @@
+.muted {
+    color: #666666;
+}
+
+.navbar-index {
+    width: 100%;
+    display: block;
+    overflow: hidden;
+}
+
+.navbar-transparent {
+    padding-top: 0px;
+}
+
+.main {
+    margin-top: 75px;
+}
+
+.footer-wrapper {
+    z-index: 5;
+    width: 100%;
+    position: absolute;
+    display: inline;
+}
+
+.error-info {
+    text-align: center;
+    width: 100%;
+}
+.error-info .icon {
+    background-image: none;
+    margin: auto;
+}
+
+.error-info .fa {
+    color: #2ca8ff;
+    font-size: 80px;
+    font-style: normal;
+    margin-bottom: 15px;
+}
+
+.flex-box-change-on-resize {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.landing-update {
+    padding: 18px;
+    font-size: 16px;
+    border-left-color: rgb(221, 221, 221);
+    border-right-color: rgb(221, 221, 221);
+    border-bottom-color: rgb(221, 221, 221);
+}

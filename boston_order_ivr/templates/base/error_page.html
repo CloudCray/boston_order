@@ -1,0 +1,23 @@
+{% extends "base/base.html" %}
+
+{% block title %}{{ status_code }} - {{ message }}{% endblock %}
+
+{% block page_content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="info error-info">
+                <div class="description">
+                    <h2> {{ status_code }} </h2>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-{{ icon }}"></i>
+                </div>
+                <div class="description">
+                    <p class="text-muted">{{ message }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

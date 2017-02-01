@@ -1,0 +1,15 @@
+development:
+  server:
+  port:
+  username:
+  password:
+  prefix: [travel ban hotline]
+  sender:
+
+production:
+  server:
+  port:
+  username:
+  password:
+  prefix: [travel ban hotline]
+  sender:

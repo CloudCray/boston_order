@@ -6,3 +6,10 @@ click==6.7
 flask==0.12
 itsdangerous==0.24
 pyyaml==3.12
+flask-sqlalchemy==2.1
+flask-security==1.7.5
+flask-admin==1.4.2
+flask-wtf==0.13.1
+flask-login==0.3.2
+flask-mail==0.9.1
+flask-markdown==0.3

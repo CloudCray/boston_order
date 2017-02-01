@@ -1,0 +1,14 @@
+{% extends "bast/base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block page_content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+    <h1>{{ title }}</h1>
+{{  wtf.quick_form(form) }}
+        </div>
+    </div>
+</div>
+{% endblock %}

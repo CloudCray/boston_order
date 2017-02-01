@@ -1,0 +1,19 @@
+{% extends "bootstrap/base.html" %}
+{% block content %}
+<div class="container">
+    <h2>Dear {{ user.username }}</h2>
+    <p>
+        Welcome to cloudcray.com!
+    </p>
+    <p>
+        To confirm your account, please click on the following link:
+    </p>
+    <p>
+        <a href='{{  url_for('auth.confirm', token=token, _external=True) }}'>Confirm!</a>
+    </p>
+    <p>
+        Thanks!
+    </p>
+    <p><h4>Cloud</h4></p>
+</div>
+{% endblock %}

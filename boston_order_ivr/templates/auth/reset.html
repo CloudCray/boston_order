@@ -1,0 +1,18 @@
+{% extends "base/base.html" %}
+{% block title %}Reset Passoword{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Reset Password</h1>
+</div>
+<div class="col-md-4">
+<form class="form-horiontal" method="POST" action="{{ url_for('auth.reset') }}">
+{{ form.csrf_token }}
+    <div class="form-group">
+    {{ form.email.label }} {{ form.email }}
+    </div>
+
+    {{ form.submit }}
+</form>
+</div>
+{% endblock %}

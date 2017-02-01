@@ -1,8 +1,7 @@
-from flask import url_for, request, Response, Blueprint
+from flask import url_for, request, Response
 import twilio.twiml
 
-bp_ivr = Blueprint('ivr', __name__)
-
+from . import bp_ivr
 
 file_options = {
     "landing": "https://www.dropbox.com/s/eg7juts27tyxd2a/intro.mp3?dl=1",
@@ -14,7 +13,7 @@ file_options = {
 }
 
 
-@bp_ivr.route('/ivr/welcome', methods=['POST'])
+@bp_ivr.route('/welcome', methods=['POST'])
 def welcome():
     response = twilio.twiml.Response()
     with response.gather(numDigits=1, action=url_for('ivr.menu'), method="POST") as g:
@@ -25,7 +24,7 @@ def welcome():
     return twiml(response)
 
 
-@bp_ivr.route('/ivr/menu', methods=['POST'])
+@bp_ivr.route('/menu', methods=['POST'])
 def menu():
     selected_option = request.form['Digits']
     option_actions = {'1': "english",

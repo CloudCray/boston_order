@@ -1,0 +1,63 @@
+{% extends "base/base.html" %}
+
+{% block page_content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2 landing-tab-section">
+        {% if landing_updates %}
+            <ul class="nav nav-tabs" role="tablist">
+                {% for update in landing_updates %}
+                <li role="presentation" {% if loop.index == 1 -%} class="active" {%- endif %} >
+                    <a href="#{{ update.language }}" aria-controls="{{ update.language }}" role="tab" data-toggle="tab">{{ update.label }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+            <div class="tab-content">
+                {% for update in landing_updates %}
+                <div role="tabpanel" class="tab-pane {%- if loop.index == 1 %} active {%- endif %} panel landing-update" id="{{ update.language }}">
+                    <p>
+                        {{ update.body | markdown }}
+                    </p>
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active">
+                    <a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a>
+                </li>
+                <li role="presentation">
+                    <a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a>
+                </li>
+                <li role="presentation">
+                    <a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a>
+                </li>
+                <li role="presentation">
+                    <a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">عربى</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active panel landing-update" id="home">
+                    <p>
+                        Home Panel
+                    </p>
+                </div>
+                <div role="tabpanel" class="tab-pane panel landing-update" id="profile">Profile Panel</div>
+                <div role="tabpanel" class="tab-pane panel landing-update" id="messages">Messages Panel</div>
+                <div role="tabpanel" class="tab-pane panel landing-update" id="settings">عربى</div>
+            </div>
+        {% endif %}
+            <script>
+            $('#landing-tab-section a').click(function (e) {
+              e.preventDefault()
+              $(this).tab('show')
+            })
+            </script>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+{{ super() }}
+{% endblock %}

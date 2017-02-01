@@ -1,0 +1,13 @@
+development:
+  driver: sqlite
+  user:
+  password:
+  server:
+  database: base.db
+
+production:
+  driver: sqlite
+  user:
+  password:
+  server:
+  database: base.db
