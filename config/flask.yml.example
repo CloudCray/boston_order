@@ -1,0 +1,7 @@
+development:
+  debug: True
+  secret_key: sOmEkEy
+
+production:
+  debug: False
+  secret_key: sOmEkEy
