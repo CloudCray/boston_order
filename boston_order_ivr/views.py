@@ -5,7 +5,8 @@ bp_ivr = Blueprint('ivr', __name__)
 
 
 file_options = {
-    "landing": "https://www.dropbox.com/s/b1getcw9shw2y0d/intro.mp3?dl=1",
+    "landing": "https://www.dropbox.com/s/eg7juts27tyxd2a/intro.mp3?dl=1",
+    "options": "https://www.dropbox.com/s/7ympms7nlpxtoof/options.mp3?dl=1",
     "english": "https://www.dropbox.com/s/6u1pgu3yt0b1gyk/english.mp3?dl=1",
     "arabic": "https://www.dropbox.com/s/pgo1nsfgflu5gtp/arabic.mp3?dl=1",
     "somali": "https://www.dropbox.com/s/pviynwf6f8idwcv/somali.mp3?dl=1",
@@ -17,7 +18,10 @@ file_options = {
 def welcome():
     response = twilio.twiml.Response()
     with response.gather(numDigits=1, action=url_for('ivr.menu'), method="POST") as g:
-        g.play(url=file_options["landing"], loop=3)
+        g.play(url=file_options["landing"])
+        for i in range(3):
+            g.play(url=file_options["options"])
+            g.pause(length=4)
     return twiml(response)
 
 
