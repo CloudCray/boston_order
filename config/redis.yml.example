@@ -1,0 +1,5 @@
+development:
+    host: 'somewhere.com'
+    port: 6479
+    password: 'password'
+    db: 1

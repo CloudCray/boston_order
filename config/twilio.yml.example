@@ -1,0 +1,4 @@
+development:
+  account_sid: ""
+  auth_token: ""
+  sms_number: "+15555555555"

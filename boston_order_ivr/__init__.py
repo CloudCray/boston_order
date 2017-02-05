@@ -1,12 +1,14 @@
 from flask import Flask
 from .config import read_config
 
-
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 from flask_mail import Mail
 from flask_admin import Admin
 from flaskext.markdown import Markdown
+from flask_rq import RQ
+
+from boston_order_ivr.sms.flask_twilio_rest import TwilioRest
 
 app = Flask(__name__)
 
@@ -17,6 +19,9 @@ login.login_view = 'auth.login'
 admin = Admin(template_mode='bootstrap3')
 db = SQLAlchemy()
 mail = Mail()
+rq = RQ()
+
+twilio_rest = TwilioRest()
 
 
 def create_app(config_name):
@@ -25,6 +30,8 @@ def create_app(config_name):
     db_config = read_config("database", config_name)
     flask_config = read_config("flask", config_name)
     email_config = read_config("mail", config_name)
+    twilio_config = read_config("twilio", config_name)
+    rq_config = read_config("redis", config_name)
 
     db_driver = db_config["driver"]
     if db_driver == "sqlite":
@@ -51,6 +58,13 @@ def create_app(config_name):
         MAIL_PASSWORD=email_config["password"],
         MAIL_PREFIX=email_config["prefix"],
         MAIL_SENDER=email_config["sender"],
+        TWILIO_ACCOUNT_SID=twilio_config["account_sid"],
+        TWILIO_AUTH_TOKEN=twilio_config["auth_token"],
+        TWILIO_SMS_NUMBER=twilio_config["sms_number"],
+        RQ_OTHER_HOST=rq_config["host"],
+        RQ_OTHER_PORT=rq_config["port"],
+        RQ_OTHER_PASSWORD=rq_config["password"],
+        RQ_OTHER_DB=rq_config["db"],
     )
 
     db.init_app(app)
@@ -58,6 +72,9 @@ def create_app(config_name):
     mail.init_app(app)
     admin.init_app(app)
     Markdown(app)
+    rq.init_app(app)
+
+    twilio_rest.init_app(app)
 
     from .base import bp_base
     from .auth import bp_auth
